@@ -23,9 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +105,11 @@ $app->configure('app');
 | can respond to, as well as the controllers that may handle them.
 |
 */
+
+$app->routeMiddleware([
+    'request' => App\Http\Middleware\RequestMiddleware::class,
+    'response' => App\Http\Middleware\ResponseMiddleware::class,
+]);
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
