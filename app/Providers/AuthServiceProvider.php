@@ -36,4 +36,10 @@ class AuthServiceProvider extends ServiceProvider
             }
         });
     }
+    public function boot2()
+    {
+        $this->app['auth']->viaRequest('api', function ($request) {
+            return app('auth')->setRequest($request)->user();
+        });
+    }
 }
